@@ -12,11 +12,14 @@
  *              If the state corresponds to one of these patterns, it prints that the
  *              string is accepted. Otherwise, it prints that the string is not accepted.
  *
- * Return - 0
+ * Return: 0
  */
 int recognizeString(char *str)
 {
         int state = 0; // Initial state
+
+        // Store the original pointer to the beginning of the string
+        char *originalStr = str;
 
         while (*str)
         {
@@ -29,49 +32,49 @@ int recognizeString(char *str)
                         }
                         else
                         {
-                                printf("%s is not recognized\n", str);
+                                printf("%s is not recognized\n", originalStr);
                                 return (0);
                         }
                         break;
                         case 1:
                         if (*str == 'a')
                         {
-                        // 'a*'
-                        state = 1;
+                                // 'a*'
+                                state = 1;
                         }
                         else if (*str == 'b')
                         {
-                        // 'a*b+'
-                        state = 2;
+                                // 'a*b+'
+                                state = 2;
                         }
                         else
                         {
-                        printf("%s is not recognized\n", str);
-                        return (0);
+                                printf("%s is not recognized\n", originalStr);
+                                return (0);
                         }
                         break;
                         case 2:
                         if (*str == 'b')
                         {
-                        // 'a*b+'
-                        state = 2;
+                                // 'a*b+'
+                                state = 2;
                         }
                         else
                         {
-                        printf("%s is not recognized\n", str);
-                        return (0);
+                                printf("%s is not recognized\n", originalStr);
+                                return (0);
                         }
                         break;
                         case 3:
                         // 'abb'
                         if (*str == 'a')
                         {
-                        state = 1;
+                                state = 1;
                         }
                         else
                         {
-                        printf("%s is not recognized\n", str);
-                        return (0);
+                                printf("%s is not recognized\n", originalStr);
+                                return (0);
                         }
                         break;
                 }
@@ -79,15 +82,15 @@ int recognizeString(char *str)
         }
         if (state == 1)
         {
-                printf("%s is accepted under rule 'a*'\n", str);
+                printf("%s is accepted under rule 'a*'\n", originalStr);
         }
         else if (state == 2)
         {
-                printf("%s is accepted under rule 'a*b+'\n", str);
+                printf("%s is accepted under rule 'a*b+'\n", originalStr);
         }
         else
         {
-        printf("%s is accepted under rule 'abb'\n", str);
+        printf("%s is accepted under rule 'abb'\n", originalStr);
         }
         return (0);
 }
@@ -95,7 +98,7 @@ int recognizeString(char *str)
 /**
  * main - MAIN
  *
- * Description - main function that is going to run the recognizeString function
+ * Description: main function that is going to run the recognizeString function
  *
  * Return: 0
  */
@@ -118,3 +121,4 @@ int main()
 
         return (0);
 }
+~    
